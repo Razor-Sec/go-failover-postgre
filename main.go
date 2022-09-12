@@ -110,7 +110,7 @@ func mainDB(url_host string, port int, user string, password string) bool {
 		} else {
 			fmt.Println(time.Now().Format(time.RFC3339), "[WARN] Status LOCAL Database on MASTER MODE")
 			log.Println("[WARN] Status LOCAL Database on MASTER MODE")
-			//fmt.Println("Please change status database to standby mode")
+			panic("Please change status database to standby mode")
 		}
 	} else {
 		fmt.Println(time.Now().Format(time.RFC3339), "[INFO] Database ", url_host, ":", port, "UP")
