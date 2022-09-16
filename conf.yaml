@@ -1,0 +1,10 @@
+local:
+  host: "0.0.0.0"
+  port: 5678
+  password: "adminpassword" 
+remote:
+  - host: "1.1.1.4"
+    port: 569
+    password: "adminpassword"
+  - host: "192.168.0.102"
+    password: "adminpassword"
