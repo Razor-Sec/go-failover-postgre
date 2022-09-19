@@ -43,6 +43,7 @@ const (
 	defaultLocalHost   = "localhost"
 	defaultLocalPgCtl  = "/usr/bin/pg_ctl"
 	defaultLocalPgData = "/var/lib/pgsql/data"
+	defaultConfDir     = "conf.yaml"
 )
 
 func parseYaml(file string) (*Configuration, error) {
@@ -89,6 +90,7 @@ func main() {
 	if *filePath == "" {
 		*filePath = "conf.yaml"
 	}
+	*filePath = defaultingStr(*filePath, defaultConfDir)
 	conf, err := parseYaml(*filePath)
 	if err != nil {
 		log.Fatal(err)
@@ -121,9 +123,10 @@ func main() {
 
 	var failedTry, attempt int = 0, 3
 	for i := range conf.Remote {
-		if conf.Remote[i].Port == 0 {
-			conf.Remote[i].Port = 5432
-		}
+		// if conf.Remote[i].Port == 0 {
+		// 	conf.Remote[i].Port = 5432
+		// }
+		conf.Remote[i].Port = defaultingInt(conf.Remote[i].Port, defaultPort)
 		misConfRemote("host", conf.Remote[i].Host, i)
 		misConfRemote("password", conf.Remote[i].Password, i)
 		conf.Remote[i].User = defaultingStr(conf.Remote[i].User, defaultUser)
