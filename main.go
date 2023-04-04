@@ -269,7 +269,6 @@ func checkDB(dbType string, host string, port int, user string, password string)
 		} else {
 			fmt.Println(time.Now().Format(time.RFC3339), "[WARN] Status LOCAL Database on MASTER MODE")
 			log.Println("[WARN] Status LOCAL Database on MASTER MODE")
-
 		}
 	}
 	return true
